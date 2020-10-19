@@ -3,6 +3,9 @@ package progettoSwitch;
 import java.util.Scanner;
 
 	public class classeSwitch {
+		/*
+		 * metodo che riempe la matrice
+		 */
 	public static void carVistMat (int[][] a) {
 		for(int i=0;i<a.length;i++) {
 			for(int j=0;j<a[i].length;j++) {
@@ -10,18 +13,26 @@ import java.util.Scanner;
 			}
 		}
 	}
-
+/*
+ * metodo che stampa la matrice
+ */
 	public static void stampa(int[][] a) {
 		for(int i=0;i<a.length;i++) {
-			
+			for (int j=0;j<a[i].length;j++) {
+				System.out.print(" "+a[i][j]);
+			}
+			System.out.println("");
 		}
 	}
+	/*
+	 * metodo che calcola il minimo e il massimo 
+	 */
 	public static void calcMinMax(int[][] a, int[][] b) {
 		Scanner inPut=new Scanner(System.in);
 		int c=0,d=0,min=0,min2,max=0,max2=0;
 		System.out.println("in questo metodo ti calcolerò il minimo e il massimo");
 		System.out.println(" tra due righe della prima e della seconda matrice");
-		System.out.println("le matrici devono avere una dimensione compresa tra 4 e 8");
+
 		
 		 do {
 			 System.out.println("inserisci una righa della prima matrice compresa tra 0 e "+(a.length-1));
@@ -37,7 +48,7 @@ import java.util.Scanner;
 		 
 		 max=a[c][0];
 		 min=a[c][0];
-		 for (int i=0;i<a[c].length-1;i++) { 
+		 for (int i=0;i<a[c].length;i++) { 
 			if(max<a[c][i]) {
 				max=a[c][i];
 			}
@@ -47,7 +58,7 @@ import java.util.Scanner;
 		 }
 		 max2=b[d][0]; 
 		 min2=b[d][0];
-			 for(int i=0;i<b[d].length-1;i++) {
+			 for(int i=0;i<b[d].length;i++) {
 				 if (max2<b[d][i]) {
 					 max2=b[d][i];
 				 }
@@ -68,10 +79,52 @@ import java.util.Scanner;
 		if(min>min2) {
 			System.out.println("il numero minore delle matrici alle corrispondenti righe è "+min2+" e si trova nella seconda matrice ");
 			}
+	}
+	/*
+	 * questo è il metodo che calcola la media
+	 */
+	public static void mediaRigCol(int[][]a ,int[][]b ) {
+		Scanner inPut=new Scanner(System.in);
+		 int c=0,d=0;
+		 double media=0,somma;
+		 
+		 System.out.println("in questo metodo ti calcolerò la media ");
+		 System.out.println("di due righe, una della prima matrice una della seconda");
 			
+			
+		do {
+			System.out.println("inserisci una righa della prima matrice compresa tra 0 e "+(a.length-1));
+			c=inPut.nextInt();
+			System.out.println("inserici una riga della seconda matrice compresa tra 0 e "+(b.length-1));
+			d=inPut.nextInt();
+				 
+		   if(c<0||c>a.length-1||d<0||d>b.length-1) {
+				System.err.println("devi inserire un numero compreso tra 0 e la lunghezza delle matrici");
+			}
+				 
+		}while(c<0||c>a.length-1||d<0||d>b.length-1);
+		
+		somma=a[c][0];
+		for (int i=0;i<a[c].length;i++) {
+			somma=somma+a[c][i];
+		}
+		media=somma/a[c].length;
+		System.out.println("la media della righa della prima matrice è "+media);
+		somma=b[d][0];
+		for (int i=0;i<b[d].length;i++) {
+			somma=somma+b[d][i];
+		}
+		media=somma/b[d].length;
+		System.out.println("la media della righa della seconda matrice è "+media);
 	}
 	
-	
+/*
+ * metodo che 
+ */
+	/**********************************************************************
+	 *  questo è il main del programma
+	 * @param args
+	 */
 	
 	public static void main(String[] args) {
 		
@@ -79,7 +132,7 @@ import java.util.Scanner;
 		int[][] matrix,matrix2;
 		int righe=0,righe1=0;
 		int richiesta=0;
-		
+		System.out.println("le matrici devono avere una dimensione compresa tra 4 e 8");
 		do {
 			System.out.println("inserisci le righe della prima matrice");
 			righe=inPut.nextInt();
@@ -95,10 +148,15 @@ import java.util.Scanner;
 		matrix2=new int[righe1][righe1];
 		carVistMat(matrix);
 		carVistMat(matrix2);
+		System.out.println("la prima matrice è");
+		stampa(matrix);
+		System.out.println("le seconda matrice è");
+		stampa(matrix2);
 		do {
 			System.out.println("");
 			System.out.println("che metodo vuoi usare, inserisci un numero tra 2 e 9, per invece finire il programma inserire 1 ");
 			richiesta=inPut.nextInt();
+			
 			switch(richiesta) {
 			
 			case 1:
@@ -110,9 +168,9 @@ import java.util.Scanner;
 				calcMinMax(matrix,matrix2);
 			break;
 			
-//			case 3:
-//				mediaRigCol(matrix,matrix2);
-//			break;
+			case 3:
+				mediaRigCol(matrix,matrix2);
+			break;
 //			
 //			case 4:
 //				occDiag(matrix,matrix2);
@@ -139,7 +197,7 @@ import java.util.Scanner;
 //			break;
 //		 
 			default:
-				System.err.println("devi scrivere un numero minore di 6 boccammt");
+				System.err.println("devi scrivere un numero minore di 9 boccammt");
 			}
 		}while(richiesta!=1);
 		System.out.println("grazie della sua partecipazione alla funzione del mio programma");
