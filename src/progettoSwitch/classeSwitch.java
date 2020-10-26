@@ -86,7 +86,7 @@ import java.util.Scanner;
 	public static void mediaRigCol(int[][]a ,int[][]b ) {
 		Scanner inPut=new Scanner(System.in);
 		 int c=0,d=0;
-		 double media=0,somma;
+		 float media=0,somma;
 		 
 		 System.out.println("in questo metodo ti calcolerò la media ");
 		 System.out.println("di due righe, una della prima matrice una della seconda");
@@ -118,6 +118,69 @@ import java.util.Scanner;
 		System.out.println("la media della righa della seconda matrice è "+media);
 	}
 	
+	/*
+	 * metodo delle diagonali
+	 */
+	public static void occDiag(int [][]a, int [][]b) {
+		int[]c =new int[a.length];
+		int[]d= new int[b.length];
+		System.out.println("");
+		System.out.println("confronto delle diagonali maggiori");
+		System.out.println("");
+		for(int i=0;i<a.length;i++) {
+			c[i]=a[i][i];
+			
+		}
+		for(int i=0;i<b.length;i++) {
+			d[i]=b[i][i];
+		 }
+		if (a.length>b.length) {
+			for(int i=0;i<b.length;i++) {
+				if (c[i]==d[i]) {
+					System.out.println("le diagonali sono uguali con il numero "+c[i]+" alla posizione "+i+1);
+				}else {
+					System.out.println("non ci sono numeri ugali nella posizione ");
+				}
+		}
+		}else if(a.length<b.length){
+			for(int i=0;i<a.length;i++) {
+				if (d[i]==c[i]) {
+					System.out.println("le diagonali sono uguali con il numero "+c[i]+" alla posizione "+i+1);
+				}else {
+					System.out.println("non ci sono numeri ugali nella posizione ");
+				}
+			}
+		}
+		for(int i=a.length;i<=0;i--) {
+				c[i]=a[i][i];
+			}
+		for(int i=b.length;i<=0;i--) {
+			d[i]=b[i][i];
+		}
+		System.out.println("");
+		System.out.println("confronto delle diagonali minori");
+		System.out.println("");
+		if (a.length>b.length) {
+			for(int i=0;i<a.length-1;i++) {
+				if (c[i]==d[i]) {
+					System.out.println("le diagonali minori sono uguali con il numero "+c[i]+" alla posizione "+i+1);
+				}else {
+					System.out.println("non ci sono numeri ugali nella posizione ");
+				}
+			}
+			
+			
+		}else if(a.length<b.length){
+			for(int i=0;i<b.length-1;i++) {
+				if (d[i]==c[i]) {
+					System.out.println("le diagonali minori sono uguali con il numero "+c[i]+" alla posizione "+i+1);
+				}else {
+					System.out.println("non ci sono numeri ugali nella posizione ");
+				}
+			}
+		}
+		
+	}
 /*
  * metodo che 
  */
@@ -153,8 +216,19 @@ import java.util.Scanner;
 		System.out.println("le seconda matrice è");
 		stampa(matrix2);
 		do {
+			System.out.println("*************************************************************************************************");
 			System.out.println("");
-			System.out.println("che metodo vuoi usare, inserisci un numero tra 2 e 9, per invece finire il programma inserire 1 ");
+			System.out.println("che metodo vuoi usare, inserisci un numero tra 2 e 6 ");
+			System.out.println(" per invece finire il programma inserire 1");
+			System.out.println("");
+			System.out.println("2 :calcMinMax richiede le righe e ti restituisce il minimo e il  massimo tra le matrici ");
+			System.out.println("   alla riga selezionate alla riga selezionate il  massimo tra le matrici alla riga selezionate");
+			System.out.println("");
+			System.out.println("3 :mediaRigCol richiede la riga della matrice e fa la media");
+			System.out.println("");
+			System.out.println("4 :occDiag confronta le diagonali delle matrici e visualizza le occorenze");
+			System.out.println("*************************************************************************************************");
+
 			richiesta=inPut.nextInt();
 			
 			switch(richiesta) {
@@ -171,10 +245,10 @@ import java.util.Scanner;
 			case 3:
 				mediaRigCol(matrix,matrix2);
 			break;
-//			
-//			case 4:
-//				occDiag(matrix,matrix2);
-//			break;
+			
+			case 4:
+				occDiag(matrix,matrix2);
+			break;
 //			
 //			case 5:
 //				parDispDiag(matrix,matrix2);
@@ -197,7 +271,7 @@ import java.util.Scanner;
 //			break;
 //		 
 			default:
-				System.err.println("devi scrivere un numero minore di 9 boccammt");
+				System.err.println("devi scrivere un numero minore di 9 ");
 			}
 		}while(richiesta!=1);
 		System.out.println("grazie della sua partecipazione alla funzione del mio programma");
